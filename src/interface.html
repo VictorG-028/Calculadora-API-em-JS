@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+  <head>
+    <title>Calculadora científica</title>
+  </head>
+  <body>
+
+    <h3>Calculadora Científica</h3>
+
+    <div style="margin-bottom: 10px;">
+      <input id="input_1" type="number" label="num_1">
+      <input id="input_2" type="number" label="num_2">
+    </div>
+
+    <button id="botao_somar">Somar</button>
+    <button id="botao_subtrair">Subtrair</button>
+    <button id="botao_multiplicar">Multiplicar</button>
+    <button id="botao_dividir">Dividir</button>
+    
+    <button id="botao_sqrt">Raiz quadrada</button>
+    <button id="botao_potencia">Potencia</button>
+    <button id="botao_sen">Seno</button>
+    <button id="botao_cos">Cosseno</button>
+    <button id="botao_tg">Tangente</button>
+
+    <div>
+      <h4 id="resultado">Resultado:  </h4>
+      <p id="obs" style="display: none;">Observação: raiz, seno, cosseno e tangente usam somente o primeiro input</p>
+    </div>
+
+  </body>
+  <script type = "text/javascript">
+    // pega os eleemntos HTML
+    const botao_somar = document.getElementById("botao_somar");
+    const botao_subtrair = document.getElementById("botao_subtrair");
+    const botao_multiplicar = document.getElementById("botao_multiplicar");
+    const botao_dividir = document.getElementById("botao_dividir");
+
+    const botao_sqrt = document.getElementById("botao_sqrt");
+    const botao_potencia = document.getElementById("botao_potencia");
+    const botao_sen = document.getElementById("botao_sen");
+    const botao_cos = document.getElementById("botao_cos");
+    const botao_tg = document.getElementById("botao_tg");
+
+    const resultado = document.getElementById("resultado");
+    const obs = document.getElementById("obs");
+    const input_1 = document.getElementById("input_1");
+    const input_2 = document.getElementById("input_2");
+
+    // Adciona as funções aos botões
+    botao_somar.addEventListener("click", requisitar);
+    botao_somar.op = "somar";
+    botao_subtrair.addEventListener("click", requisitar);
+    botao_subtrair.op = "subtrair";
+    botao_multiplicar.addEventListener("click", requisitar);
+    botao_multiplicar.op = "multiplicar";
+    botao_dividir.addEventListener("click", requisitar);
+    botao_dividir.op = "dividir";
+
+    botao_sqrt.addEventListener("click", requisitar);
+    botao_sqrt.op = "sqrt";
+    botao_potencia.addEventListener("click", requisitar);
+    botao_potencia.op = "pow";
+    botao_sen.addEventListener("click", requisitar);
+    botao_sen.op = "sen";
+    botao_cos.addEventListener("click", requisitar);
+    botao_cos.op = "cos";
+    botao_tg.addEventListener("click", requisitar);
+    botao_tg.op = "tg";
+
+    // Função executava pelos botões
+    async function requisitar(event) {
+      const op = event.currentTarget.op;
+      const num_1 = input_1.value;
+      const num_2 = input_2.value;
+
+      const URL = `http://localhost:3333/${op}?num_1=${num_1}&num_2=${num_2}`;
+      const response = await fetch(URL);
+      const resultado_json = await response.json(); // formata para JSON
+      
+      resultado.innerHTML = `Resultado:  ${resultado_json.resposta}`;
+      if (op == "sqrt" || op == "sen" || op == "cos" || op == "tg") {
+        obs.style = "display: block;"
+      } else {
+        obs.style = "display: none;"
+      }
+      
+    }
+
+
+  </script>
+</html>

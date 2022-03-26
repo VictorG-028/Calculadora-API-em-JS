@@ -1,0 +1,15 @@
+{
+  "name": "calculadora",
+  "author": "VictorG-028",
+  "version": "1.0.0",
+  "description": "Tarefa de SD - API REST de uma calculadora simples",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3"
+  }
+}
