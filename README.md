@@ -14,7 +14,8 @@ Tarefa de SD - API REST de uma calculadora simples
 
 1. Copie os arquivos do projeto com `git clone` ou baixando o .zip para o seu computador
 2. Abra um console na pasta do projeto e use o comando `npm start` ou `yarn start` para executar o projeto
-3. A mensagem **Server is running on localhost:3333** e os testes de URL devem aparecer nesse terminal caso não haja erros
+   * Caso haja algum erro relacionado a falta de depencias (erro na pasta node_modules) então é necessário deletar a pasta node_modules e reinstalar usando o comando `npm install` ou `yarn install`
+4. A mensagem **Server is running on localhost:3333** e os testes de URL devem aparecer nesse terminal caso não haja erros
 
 ## Arquitetura do projeto
 - server.js é o arquivo principal em que tudo se inicia, nele é instanciado o app com suporte do arquivo routes.js <br/>
